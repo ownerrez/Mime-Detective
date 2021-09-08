@@ -17,6 +17,7 @@ namespace MimeDetective
         public int HeaderOffset { get; set; }
         public string Extension { get; set; }
         public string Mime { get; set; }
+        public bool LastIsNibble { get; set; }
 
         public FileType()
         {
@@ -30,12 +31,13 @@ namespace MimeDetective
         /// <param name="header">Byte array with header.</param>
         /// <param name="extension">String with extension.</param>
         /// <param name="mime">The description of MIME.</param>
-        public FileType(byte?[] header, string extension, string mime)
+        public FileType(byte?[] header, string extension, string mime, bool lastIsNibble = false)
         {
             Header = header;
             Extension = extension;
             Mime = mime;
             HeaderOffset = 0;
+            LastIsNibble = lastIsNibble;
         }
 
 
@@ -49,7 +51,6 @@ namespace MimeDetective
         /// <param name="mime">The description of MIME.</param>
         public FileType(byte?[] header, int offset, string extension, string mime)
         {
-            this.Header = null;
             this.Header = header;
             this.HeaderOffset = offset;
             this.Extension = extension;
